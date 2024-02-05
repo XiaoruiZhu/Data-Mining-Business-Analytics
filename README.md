@@ -1,6 +1,7 @@
-# Welcome to Data mining for Business Analytics
+# Welcome to Data Mining for Business Analytics
 
 This is a course covering the data mining methods for Business Analytics. 
+
 # Data Mining in R
 
 ## Lecture and Lab Notes
