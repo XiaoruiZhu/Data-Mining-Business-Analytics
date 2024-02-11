@@ -101,6 +101,6 @@ More settings of the output of code chunks can be found [rmarkdown](https://book
 
 To include some calculation by R code in a line, one can surround the codes as follows: 
 
-> Two plus two equals `r 2+2`. (Use a pair of backticks and the letter r like this: $\color{red}{\text{\` r 2+2 \`}})
+> Two plus two equals `r 2+2`. (Use a pair of backticks and the letter r like this: $\color{red}{\text{` r 2+2 `}}$)
 
 [go to top](#header)
