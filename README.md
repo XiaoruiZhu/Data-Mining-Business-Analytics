@@ -1,30 +1,17 @@
-# Welcome to Data Mining for Business Analytics
+# Data Mining for Business Analytics
 
-This is a course covering the data mining methods for Business Analytics. 
-
-# Data Mining in R
+This is a course covering the data mining methods for Business Analytics. It is an entry-level courses for the undergraduate students in business school to learn some advanced techniques in data mining area and enhance 
 
 ## Lecture and Lab Notes
 
 ### Introduction to Data Mining for Business Analytics
 
-<style>
-table th:first-of-type {
-    width: 480px;
-}
-table th:nth-of-type(2) {
-    width: 160px;
-}
-table th:nth-of-type(3) {
-    width: 160px;
-}
-</style>
-
-
 | Notes | Exercise |
 |:----------|------:|
-| [1. Introduction to R]()                 |  |
-| [1. Introduction to RMarkdown](lecture/1.IntroMarkdown.html)    |  |
+| [1. Introduction to R ()]()                 |  |
+| [2. Introduction to R](lab/1-IntroR.html)                 |  |
+| [3. Introduction to RMarkdown](lecture/1-IntroMarkdown.html)    |  |
+| [4. Introduction to Data Cleaning](lab/1-IntroData.html)                 |  |
 
 <a id="bottom"></a>
 
