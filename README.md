@@ -6,12 +6,12 @@ This is a course covering the data mining methods for Business Analytics. It is 
 
 ### Introduction to Data Mining for Business Analytics
 
-| Notes | Exercise |
-|:----------|------:|
-| [1. Introduction to R ()]()                 |  |
-| [2. Introduction to R](lab/1-IntroR.html)                 |  |
-| [3. Introduction to RMarkdown](lecture/1-IntroMarkdown.html)    |  |
-| [4. Introduction to Data Cleaning](lab/1-IntroData.html)                 |  |
+| Notes                                                       | Labs                                |
+|:------------------------------------------------------------|------------------------------------:|
+| [1. Introduction to Data Mining ()]()                       |                                     |
+| [2. Introduction to R](lab/1-IntroR.html)                   |[Lab1-R-Basic](lab/Lab1-R-Basic.html)|
+| [3. Introduction to RMarkdown](lecture/1-IntroMarkdown.html)|                                     |
+| [4. Introduction to Data Wrangling](lecture/2-Data-Wrangling.html)    |                                     |
 
 <a id="bottom"></a>
 
