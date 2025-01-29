@@ -1,11 +1,11 @@
 ---
 title: "Introduction to RMarkdown"
 author: "Xiaorui(Jeremy) Zhu"
-date: "01/30/2024"
+date: "01/29/2025"
 output:
   slidy_presentation:
     font_adjustment: +2
-    footer: "Copyright (c) 2024, Xiaorui (Jeremy) Zhu"
+    footer: "Copyright (c) 2025, Xiaorui (Jeremy) Zhu"
 job: Business Analytics
 editor_options: 
   chunk_output_type: console
@@ -19,10 +19,11 @@ editor_options:
 
 # You may have these headaches: {.center .incremental}
 
-> - How can I organize my report and calculations?
+> - How can I efficiently organize my report and calculations?
 > - Answer: Open two Word and RStudio side-by-side?
 > - How can I efficiently rewrite my report/homework if the analyses changed?
-> - Answer: Run analyses? Copy? Paste?
+> - Answer: Rerun analyses? Copy and paste the results. 
+> - What if there are a lot that need to be updated?
 > - How can I avoid dealing with the format of my report and focus on the content itself?
 > - Answer: Leave the messy format alone? 
 
@@ -41,15 +42,6 @@ $\color{red}{\text{If these questions ever bother you at least once, then you ne
 The most recent version of R-studio has added the "R Markdown" file type as default. You can create an "R Markdown" file. 
 
 ![](figure/RMarkdown.png){width=90%}
-
-# From RMarkdown file to HTML/pdf/Word {.incremental}
-
-> - $\color{red}{\text{One click! You can generate by simply clicking the "Knit" button.}}$
-
-> - You can generate three types of files as the report: HTML/pdf/word and have them popped-up. PS: the pdf file generating process require LaTex (such as [MikTex](https://miktex.org/)) installed and your codes do not have bugs :-) 
-
-> - ![](figure/RMarkdown_Gen.png){width=100%}
-
 
 # Markdown Syntax: Simplest way of writing {.incremental}
 
@@ -70,6 +62,14 @@ The most recent version of R-studio has added the "R Markdown" file type as defa
 * [Reddit](www.reddit.com)
 
 ## R Markdown is a special type of Markdown in R
+
+
+## Here are some codes
+
+5 + 10
+mean(income)
+# Need to be surrounded by code chunck (```{r}...```), will give example 
+
 ```
 
 # How to communicate with codes? Use "knitr"
@@ -102,5 +102,14 @@ More settings of the output of code chunks can be found [rmarkdown](https://book
 To include some calculation by R code in a line, one can surround the codes as follows: 
 
 > Two plus two equals `r 2+2`. (Use a pair of backticks and the letter r like this: $\color{red}{\text{` r 2+2 `}}$)
+
+
+# Beauty of it: From RMarkdown file to HTML/pdf/Word {.incremental}
+
+> - $\color{red}{\text{One click! You can generate by simply clicking the "Knit" button.}}$
+
+> - You can generate three types of files as the report: HTML/pdf/word and have them popped-up. PS: the pdf file generating process require LaTex (such as [MikTex](https://miktex.org/)) installed and your codes do not have bugs :-) 
+
+> - ![](figure/RMarkdown_Gen.png){width=100%}
 
 [go to top](#header)
