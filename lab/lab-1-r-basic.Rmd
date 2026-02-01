@@ -1,41 +1,30 @@
 ---
-title: "Lab1-R-Basic"
-jupyter:
-  jupytext:
-    formats: ipynb,Rmd
-    text_representation:
-      extension: .Rmd
-      format_name: rmarkdown
-      format_version: '1.2'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: R
-    language: R
-    name: ir
+title: "Lab1: Practice R Basic commands"
 output:
-  html_document:
-    df_print: paged
+  html_document: 
+    fig_caption: yes
+    number_sections: no
+    theme: readable
+    toc: yes
+    code_folding: show
+  md_document:
+    variant: markdown_github
+  pdf_document: default
+editor_options: 
+  chunk_output_type: console
 ---
-
 
 # Lab: Introduction to R
 
-In this lab, we will introduce some simple `R` commands. The best way to learn a new language
-is to try out the commands. `R` can be downloaded from
+In this lab, we will practice some simple `R` commands. The best way to learn a new language is to try out the commands. 
 
-`http://cran.r-project.org/`
-
-
-We recommend that you run `R` within an integrated development environment (IDE) such as `RStudio`, which can be freely downloaded from
-
-`http://rstudio.com`
+I recommend that you run `R` within an integrated development environment (IDE) such as `RStudio`, which can be freely downloaded from `http://rstudio.com`
 
 The `RStudio` website also provides a cloud-based version of `R`, which does not require installing any software.
 
 ## Basic Commands
 
-`R` uses *functions* to perform operations. To run a function called `funcname`, we type `funcname(input1, input2)`, where the inputs (or *arguments*) `input1` and `input2` tell `R`
- how to run the function. A function can have any number of inputs. For example, to create a vector of numbers, we use the function `c()` (for *concatenate*). Any numbers inside the parentheses are joined together. The following  command
+`R` uses *functions* to perform operations. To run a function called `funcname`, we type `funcname(input1, input2)`, where the inputs (or *arguments*) `input1` and `input2` tell `R` how to run the function. A function can have any number of inputs. For example, to create a vector of numbers, we use the function `c()` (for *concatenate*). Any numbers inside the parentheses are joined together. The following  command
 instructs `R` to join together the numbers 1, 3, 2, and 5, and to save them as a vector  named `x`. When we type `x`, it gives us back the vector.
 
 ```{r chunk1}
@@ -77,7 +66,6 @@ It's also possible to remove all objects at once:
 ```{r chunk5}
 rm(list = ls())
 ```
-
 
 The `matrix()` function can be used to create a matrix of numbers.
 Before we use the `matrix()` function, we can learn more about it:
@@ -238,6 +226,9 @@ a Windows system one could select the directory using the
 We begin by loading in the `Auto` data set. This data is part of the `ISLR2` library, discussed in Chapter 3.
 To illustrate the `read.table()` function, we load it now from a text file, `Auto.data`, which you can find on the textbook website.
  The following command will load the `Auto.data` file into `R` and store it as an object called `Auto`,  in a format referred to as a .  Once the data has been loaded, the `View()` function can be used to view it in a spreadsheet-like window. (*This function can sometimes be a bit finicky. If you have trouble using it, then try the `head()` function instead.*) The `head()` function can also be used to view the first few rows of the data.
+
+
+Download Dataset: [Auto Data](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/Auto.data)
 
 ```{r chunk25}
 Auto <- read.table("data/Auto.data")
