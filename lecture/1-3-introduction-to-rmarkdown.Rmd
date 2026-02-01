@@ -1,7 +1,7 @@
 ---
 title: "Introduction to RMarkdown"
 author: "Xiaorui(Jeremy) Zhu"
-date: "01/29/2025"
+date: "01/08/2026"
 output:
   slidy_presentation:
     font_adjustment: +2
@@ -45,13 +45,13 @@ The most recent version of R-studio has added the "R Markdown" file type as defa
 
 # Markdown Syntax: Simplest way of writing {.incremental}
 
-> - 1. headers - A single hashtag: first-level header. Two hashtags, `##`, creates a second-level header, and so on.
+> - 1. headers: A single hashtag: first-level header. Two hash tags, `##`, creates a second-level header, and so on.
 
-> - 2. italicized and bold text - one asterisk, like this *without realizing it*. Two asterisks, like this, `**easy to use**` **easy to use**.
+> - 2. italicized and bold text: one asterisk, like this *without realizing it*. Two asterisks, like this, `**easy to use**` **easy to use**.
 
-> - 3. lists - Use asterisks or dash to create bullet points.
+> - 3. lists: Use asterisks or dash to create bullet points.
 
-> - 4. hyperlinks - create a hyperlink like this [Data-Mining](https://xiaoruizhu.github.io/Data-Mining-R/).
+> - 4. hyperlinks: create a hyperlink like this `[Data-Mining](https://xiaoruizhu.github.io/Data-Mining-R/)`.
 
 ```
 # Say Hello to **Data Mining** in Markdown
@@ -75,7 +75,7 @@ mean(income)
 # How to communicate with codes? Use "knitr"
 
 1. `knitr` is an R package that extends the markdown syntax. 
-2. One of the most important functions of `knitr` is to include exectuable R code. 
+2. One of the most important functions of `knitr` is to include executable R code. 
 3. Then, with the codes inside the paragraph, the technical report will be more readable than that not including codes. 
 4. With `knitr`, the results of executed codes can be automatically included in the output report, which is a great feature.
 5. This feature makes your analyses "reproducible". 
@@ -108,7 +108,9 @@ To include some calculation by R code in a line, one can surround the codes as f
 
 > - $\color{red}{\text{One click! You can generate by simply clicking the "Knit" button.}}$
 
-> - You can generate three types of files as the report: HTML/pdf/word and have them popped-up. PS: the pdf file generating process require LaTex (such as [MikTex](https://miktex.org/)) installed and your codes do not have bugs :-) 
+> - You can generate three types of files as the report: HTML/pdf/word and have them popped-up. 
+
+> - PS: the pdf file generating process require LaTex (such as [MikTex](https://miktex.org/)) installed and your codes do not have bugs :-) 
 
 > - ![](figure/RMarkdown_Gen.png){width=100%}
 
