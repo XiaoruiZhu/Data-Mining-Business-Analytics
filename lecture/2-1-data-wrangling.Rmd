@@ -1,11 +1,11 @@
 ---
 title: "Data Wrangling in R"
 author: "Xiaorui (Jeremy) Zhu"
-date: "02/10/2024"
+date: "01/08/2026"
 output:
   slidy_presentation:
     font_adjustment: +2
-    footer: "Copyright (c) 2024, Xiaorui (Jeremy) Zhu"
+    footer: "Copyright (c) 2025, Xiaorui (Jeremy) Zhu"
     # df_print: paged
 editor_options: 
   chunk_output_type: console
@@ -35,61 +35,6 @@ Data cleaning is a crucial step in the process of preparing data for analysis in
 > It is important and time-consuming, 
 >
 > but, do you enjoy data cleaning? 
-
-# Example 1
-
-The following two datasets are the raw and clean data. The Raw dataset contains the headers and other information that triggers missing values. Without cleaning, it cannot be directly used. On the contrary, the clean dataset presented right after has the rows and colomns clearly stroed. 
-
-```{r cols.print=3, rows.print=3, message=FALSE}
-# install.packages("readxl")
-Retail <- readxl::read_xlsx(path = "data/RetailSales2018.xlsx")
-head(Retail)
-Retail_clean <- readxl::read_xlsx(path = "data/RetailSales2018_clean.xlsx")
-Retail_clean
-```
-
-Data sources: [Retail Sales Raw Data](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/RetailSales2018.xlsx) and [Retail Sales Clean Data](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/RetailSales2018_clean.xlsx)
-
-
-```{r echo=FALSE, eval=FALSE, cols.print=3, rows.print=3}
-# Store the data in a conveniently named variable
-Sales <- Retail_clean$Sales
-# Figure 1.2
-plot(Sales, type = "l")
-
-# head(Retail_clean)
-# Change to Time-Series Object
-library(zoo)
-Retail_Sales <- ts(Retail_clean$Sales, start = as.yearmon("1992-01"), freq = 12)
-head(Retail_Sales)
-
-# install.packages("forecast")
-require("forecast")
-plot(Retail_Sales)
-
-# Produce the seasonal plot of the last 4 years. We use the function seasonplot from the forecast package
-z <- window(Retail_Sales, start=c(2011,1))
-seasonplot(z)
-```
-
-```{r, eval=FALSE, echo=FALSE}
-# Figure 1.3
-Sales_adj <- Retail_clean$Sales / Retail_clean$S_Factor
-plot(Sales_adj, type = "l")
-
-# Figure 1.5
-Sales_MOM <- (Sales_adj-quantmod::Lag(Sales_adj, k=1))/quantmod::Lag(Sales_adj, k=1)
-Sales_MOM2 <- ts(Sales_MOM, start = as.yearmon("1992-01"), freq = 12)
-Sales_MOM3 <- window(Sales_MOM2, start=c(2001,1))
-plot(Sales_MOM3, type = "l")
-
-# Figure 1.6
-Sales_YOY <- (Sales_adj-quantmod::Lag(Sales_adj, k=12))/quantmod::Lag(Sales_adj, k=12)
-Sales_YOY2 <- ts(Sales_YOY, start = as.yearmon("1992-01"), freq = 12)
-Sales_YOY3 <- window(Sales_YOY2, start=c(2001,1))
-plot(Sales_YOY3, type = "l")
-```
-
 
 # Data Wrangling in R {.bigger .incremental}
 

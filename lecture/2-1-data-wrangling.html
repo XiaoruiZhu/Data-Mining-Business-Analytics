@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Xiaorui (Jeremy) Zhu" />
-  <meta name="date" content="2024-02-10" />
-  <meta name="copyright" content="Copyright (c) 2024, Xiaorui (Jeremy) Zhu" />
+  <meta name="date" content="2026-01-08" />
+  <meta name="copyright" content="Copyright (c) 2025, Xiaorui (Jeremy) Zhu" />
   <meta name="font-size-adjustment" content="2" />
   <title>Data Wrangling in R</title>
   <style type="text/css">
@@ -528,7 +528,7 @@ list-style-type: none;
   <p class="author">
 Xiaorui (Jeremy) Zhu
   </p>
-  <p class="date">02/10/2024</p>
+  <p class="date">01/08/2026</p>
 </div>
 <div id="importance-of-data-wrangling" class="slide section level1 center bigger incremental">
 <h1 class="center bigger incremental">Importance of Data Wrangling!</h1>
@@ -565,47 +565,6 @@ dataset to ensure its <strong>reliability</strong> and
 <p>It is important and time-consuming,</p>
 <p>but, do you enjoy data cleaning?</p>
 </blockquote>
-</div>
-<div id="example-1" class="slide section level1">
-<h1>Example 1</h1>
-<p>The following two datasets are the raw and clean data. The Raw
-dataset contains the headers and other information that triggers missing
-values. Without cleaning, it cannot be directly used. On the contrary,
-the clean dataset presented right after has the rows and colomns clearly
-stroed.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># install.packages(&quot;readxl&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>Retail <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">&quot;data/RetailSales2018.xlsx&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">head</span>(Retail)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 5
-##   RETAIL &amp; FOOD SERVICES(http://www.census.gov/retail/…¹ ...2  ...3  ...4  ...5 
-##   &lt;chr&gt;                                                  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 SEASONAL FACTORS(http://www.census.gov/retail/marts/w… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-## 2 CPI Table 24(http://www.bls.gov/cpi)                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-## 3 &lt;NA&gt;                                                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-## 4 &lt;NA&gt;                                                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-## 5 Year                                                   Month Sales S_Fa… CPI  
-## 6 1992                                                   JAN   1471… 0.89… 138.1
-## # ℹ abbreviated name:
-## #   ¹​`RETAIL &amp; FOOD SERVICES(http://www.census.gov/retail/marts/www/timeseries.html)`</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>Retail_clean <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">&quot;data/RetailSales2018_clean.xlsx&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>Retail_clean</span></code></pre></div>
-<pre><code>## # A tibble: 318 × 5
-##     Year Month   Sales S_Factor   CPI
-##    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
-##  1  1992 JAN   147182.    0.897  138.
-##  2  1992 FEB   147013.    0.895  139.
-##  3  1992 MAR   159653.    0.975  139.
-##  4  1992 APR   163606.    0.993  140.
-##  5  1992 MAY   170089.    1.03   140.
-##  6  1992 JUN   168922.    1.02   140.
-##  7  1992 JUL   169982.    1.02   140.
-##  8  1992 AUG   170650.    1.02   141.
-##  9  1992 SEP   164664.    0.972  141.
-## 10  1992 OCT   173583.    1.02   142.
-## # ℹ 308 more rows</code></pre>
-<p>Data sources: <a href="https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/RetailSales2018.xlsx">Retail
-Sales Raw Data</a> and <a href="https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/RetailSales2018_clean.xlsx">Retail
-Sales Clean Data</a></p>
 </div>
 <div id="data-wrangling-in-r" class="slide section level1 bigger incremental">
 <h1 class="bigger incremental">Data Wrangling in R</h1>
@@ -693,9 +652,9 @@ and <code>read_excel()</code> to read in .xlsx files.</p>
 <ol style="list-style-type: decimal">
 <li>Example 1: Importing data from a CSV file (<a href="https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/Auto.csv">Auto.csv</a>)</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>Auto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Auto.csv&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># View(Auto)</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">head</span>(Auto)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>Auto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Auto.csv&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co"># View(Auto)</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">head</span>(Auto)</span></code></pre></div>
 <pre><code>##   mpg cylinders displacement horsepower weight acceleration year origin
 ## 1  18         8          307        130   3504         12.0   70      1
 ## 2  15         8          350        165   3693         11.5   70      1
@@ -713,14 +672,14 @@ and <code>read_excel()</code> to read in .xlsx files.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Example 2: Importing data from an Excel spreadsheet (<a href="https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/RetailSales2018_clean.xlsx">RetailSales2018_clean.xlsx</a>)</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>Retail <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">&quot;data/RetailSales2018.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>Retail <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">&quot;data/RetailSales2018.xlsx&quot;</span>)</span></code></pre></div>
 <pre><code>## New names:
 ## • `` -&gt; `...2`
 ## • `` -&gt; `...3`
 ## • `` -&gt; `...4`
 ## • `` -&gt; `...5`</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">head</span>(Retail)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">head</span>(Retail)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   RETAIL &amp; FOOD SERVICES(http://www.census.gov/retail/…¹ ...2  ...3  ...4  ...5 
 ##   &lt;chr&gt;                                                  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
@@ -744,8 +703,8 @@ functions from the <code>dplyr</code> and <code>tidyr</code>
 packages.</p>
 <h2 id="example-1-removing-useless-rows">Example 1: Removing useless
 rows</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>Retail2 <span class="ot">&lt;-</span> Retail[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),]</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">head</span>(Retail2)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>Retail2 <span class="ot">&lt;-</span> Retail[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),]</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">head</span>(Retail2)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   RETAIL &amp; FOOD SERVICES(http://www.census.gov/retail/…¹ ...2  ...3  ...4  ...5 
 ##   &lt;chr&gt;                                                  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
@@ -757,10 +716,10 @@ rows</h2>
 ## 6 1992                                                   MAY   1700… 1.02… 139.…
 ## # ℹ abbreviated name:
 ## #   ¹​`RETAIL &amp; FOOD SERVICES(http://www.census.gov/retail/marts/www/timeseries.html)`</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Change colomn names</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">names</span>(Retail2) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Retail2[<span class="dv">1</span>, ])</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>Retail2 <span class="ot">&lt;-</span> Retail2[<span class="sc">-</span><span class="dv">1</span>, ]</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>Retail2[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Change colomn names</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">names</span>(Retail2) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Retail2[<span class="dv">1</span>, ])</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>Retail2 <span class="ot">&lt;-</span> Retail2[<span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>Retail2[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   Year  Month Sales              S_Factor            CPI               
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;             
@@ -769,13 +728,13 @@ rows</h2>
 ## 3 1992  MAR   159653.32499999998 0.97499999999999998 139.30000000000001</code></pre>
 <h2 id="example-2-handling-missing-values">Example 2: Handling missing
 values</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>clean_Retail <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Retail2)</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">dim</span>(clean_Retail)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>clean_Retail <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Retail2)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">dim</span>(clean_Retail)</span></code></pre></div>
 <pre><code>## [1] 318   5</code></pre>
 <h2 id="example-3-removing-duplicates">Example 3: Removing
 duplicates:</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>clean_Retail2 <span class="ot">&lt;-</span> clean_Retail[<span class="sc">!</span><span class="fu">duplicated</span>(clean_Retail), ]</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">dim</span>(clean_Retail2)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>clean_Retail2 <span class="ot">&lt;-</span> clean_Retail[<span class="sc">!</span><span class="fu">duplicated</span>(clean_Retail), ]</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">dim</span>(clean_Retail2)</span></code></pre></div>
 <pre><code>## [1] 318   5</code></pre>
 </div>
 <div id="data-transformation" class="slide section level1">
