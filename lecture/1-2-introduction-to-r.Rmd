@@ -178,6 +178,7 @@ x > y
 
 
 ## Data Structure: Vector, Matrix, Data frame, and List {.tabset .tabset-fade .tabset-pills}
+
 There are four types of data structure in R: Vector, Matrix, Data frame, and List
 
 ### __Vector__ {.tabset .tabset-fade .tabset-pills}
@@ -224,6 +225,9 @@ min(z)
 ```
 
 #### Summary statistics
+
+`summary()` is a function that calculate simple statistics for a given vector. 
+
 ```{r}
 #Summary Stats
 summary(z)
@@ -231,17 +235,17 @@ summary(z)
 
 #### Calculation 
 
-Elementwise operations for single vector or vectors:
+Element-wise operations for single vector or vectors:
 
 ```{r}
 z
-z+2
-z/10
+z + 2
+z / 10
 # define vector z1
-z1 <- c(2,4,6,8)
+z1 <- c(2, 4, 6, 8)
 # Elementwise operations (must be the same length)
-z+z1
-z*z1
+z + z1
+z * z1
 ```
 
 Vector of multiple vectors is still a vector. z2
@@ -251,6 +255,7 @@ Vector of multiple vectors is still a vector. z2
 z2 <- c(z, z1)
 z2
 ```
+
 #### Indexing
 
 How to extract the second entry of vector z2=(3,5,7,9,2,4,6,8)?
@@ -312,7 +317,8 @@ A <- matrix(data = z2, nrow = 4, ncol = 2, byrow = TRUE)
 
 #### Calculation
 
-Elementwise operations for matrices:
+Element-wise operations for matrices:
+
 ```{r ele_op}
 A
 A+2
@@ -489,27 +495,45 @@ dim(Cus); names(Cus); mean(Cus$DebtToIncomeRatio)
 mean(Cus$MaritalStatus=="Married")
 ```
 
-## Basic Plotting
+## Basic Plotting {.tabset .tabset-fade .tabset-pills}
 
-A Simple Time-Series Plot
+### `plot()` for scatterplot {.tabset .tabset-fade .tabset-pills}
 
-[Retail Sales R-version Data](data/data_US_Retail_Sales_2.Rdata)
+The `plot()` function is the primary way to plot data in `R`. For instance, `plot(x, y)` produces a scatterplot of the numbers in `x` versus the numbers in
+`y`. There are many additional options that can be passed in to the `plot()` function. For example,
+passing in the argument `xlab` will result in a label on the $x$-axis. To find out more information about the `plot()` function,
+type `?plot`.
 
-```{r fig.align="center", eval=FALSE}
-load("data/data_US_Retail_Sales_2.Rdata")
-###################################################
-# Load useful packages
-# if (!require("forecast")){install.packages("forecast")}
-require("forecast")
-# Store the data in a conveniently named variable
-y <- data_US_Retail_Sales_2
+```{r chunk14}
+# simulate 100 numbers from the standard normal distribution
+x <- rnorm(100)
+# simulate 100 numbers from the standard normal distribution
+y <- rnorm(100)
 
-# First we plot the complete time series. We use the function plot
-plot(y)
+# Scatter plot using x and y 
+plot(x, y)
+# Scatter plot with more clear caption and labels
+plot(x, y, xlab = "this is the x-axis",
+    ylab = "this is the y-axis",
+    main = "Plot of X vs Y")
+```
 
-# Produce the seasonal plot of the last 4 years. We use the function seasonplot from the forecast package
-z <- window(y, start=c(2011,1))
-seasonplot(z)
+### `hist()` for histogram {.tabset .tabset-fade .tabset-pills}
+
+The `hist()` function is the way to display the histogram of a sequence of numbers in `R`. For example, the `x` vector/series we simulated, we can display its histogram as simple as follows: 
+
+```{r}
+# histogram of x
+hist(x)
+```
+
+### `boxplot()` for scatterplot {.tabset .tabset-fade .tabset-pills}
+
+The `boxplot()` function is the way to draw the boxplot.
+
+```{r}
+# boxplot of x
+boxplot(x)
 ```
 
 ## Probability Distributions
@@ -533,91 +557,6 @@ rnorm(10)
 rnorm(n=10,mean=100,sd=20)
 ```
 
-## Functions
-- R programming is essential applying and writing functions. Most of R consists of functions.
-- An R function may require multiple inputs, we call them argument. The arguments can either be input in the right order, or using argument names. In RStudio, pressing tab after function name gives help about arguments
-- Using “?+function name” to learn how to use that funcion.
-- We introduce how to write simple functions here. In the following example the function *abs_val* returns the absolute value of a number.
-
-```{r}
-abs_val = function(x){
-  if(x >= 0){
-    return(x)
-  }
-  else{
-    return(-x)
-  }
-}
-abs_val(-5)
-```
-
-A function for vector truncation
-```{r}
-mytruncation<- function(v, lower, upper){
-  v[which(v<lower)]<- lower
-  v[which(v>upper)]<- upper
-  return(v)
-}
-```
-
-You just defined a global function for truncation. Now let’s apply it to vector z2, where we truncate at lower=3 upper=7.
-```{r}
-mytruncation(v = z2, lower = 3, upper = 7)
-```
-## Loop 
-There are two ways to write a loop: while and for loop. Loop is very useful to do iterative and duplicated computing.
-
-For example: calculate $1+1/2+1/3+...+1/100$.
-
-### Using **while** loop
-```{r}
-i<- 1
-x<- 1
-while(i<100){
-  i<- i+1
-  x<- x+1/i
-}
-x
-```
-
-### Using **for** loop
-```{r}
-x<- 1
-for(i in 2:100){
-  x<- x+1/i
-}
-x
-```
-
-> **Exercise:** 
-> 
-> 1. Do you think $1+1/2^2+1/3^2+...+1/n^2$ converges or diverges as $n\rightarrow \infty$? Use R to verify your answer.
-> 2. Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13,… What is the next number? What is the 50th number? Creat a vector of first 30 Fibonacci numbers.
-> 3. Write a function that can either calculate the summation of the serie in Question 1 or generate and print Fibonacci sequence in Question 2. 
-
-```{r echo=FALSE, eval=FALSE}
-Task <- function(Seq=c("Q1", "Fib"), n) {
-  x <- 1
-  if (Seq=="Q1") {
-    for(i in 2:n){
-      x <- x + (1/i)^2
-    }
-  } else if (Seq=="Fib") {
-    x_0 <- 0; cat(x)
-    for (i in 1:(n-1)) {
-      x <- x_0 + x 
-      x_0 <- x - x_0
-      cat(",", x)
-    }
-    cat("\nThe ", n, "-th Fibonacci number is:", x, "\n", sep = "")
-  }
-  return(x)
-}
-Task(Seq = "Fib", 10)
-Task(Seq = "Q1", 100)
-Task(Seq = "Q1", 10000)
-```
-
 [go to top](#header)
 
 # Summary
@@ -627,7 +566,7 @@ Task(Seq = "Q1", 10000)
 That is great! Go R!
 
 ### NO! 
-You may have trouble in the rest of the semester..., so please try to get used to it!
+You may face some challenges in the rest of the semester..., so please learn these basic syntaxes and get used to them!
 
 ## What you need to remember
 - Set working directory.
