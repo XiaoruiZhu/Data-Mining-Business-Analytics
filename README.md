@@ -1,6 +1,6 @@
 # Data Mining for Business Analytics
 
-This is a course covering the data mining methods for Business Analytics. It is an entry-level courses for the undergraduate students in business school to learn some advanced techniques in data mining area with hands-on experience. It also introduces generative AI tools for student to effectively apply data analytics with the help of generative AI. 
+This course covers data mining methods for business analytics. It is an entry-level course for undergraduate students in the business school to learn advanced techniques in data mining with hands-on experience. It also introduces generative AI tools to help students effectively apply data analytics with the support of generative AI. *If any page or link cannot be loaded, please refer to Blackboard for the materials.*
 
 ## Lecture and Lab Notes
 
