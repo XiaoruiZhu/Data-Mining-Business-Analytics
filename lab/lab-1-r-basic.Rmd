@@ -167,6 +167,21 @@ plot(x, y, col = "green")
 dev.off()
 ```
 
+
+The function `dev.off()` indicates to `R` that we are done creating the plot.
+Alternatively, we can simply copy the plot window and paste it into an appropriate file type, such as a Word document.
+
+The function `seq()` can be used to create a sequence of numbers. For instance, `seq(a, b)` makes a vector of integers between `a` and `b`.
+There are many other options: for instance,  `seq(0, 1, length = 10)` makes a sequence of `10` numbers that are equally spaced between `0` and `1`. Typing `3:11` is a shorthand for `seq(3, 11)` for integer arguments.
+
+```{r chunk16}
+x <- seq(1, 10)
+x
+x <- 1:10
+x
+x <- seq(-pi, pi, length = 50)
+```
+
 ## Indexing Data
 
 We often wish to examine part of a set of data. Suppose that our data is stored in the matrix `A`.
@@ -228,7 +243,9 @@ To illustrate the `read.table()` function, we load it now from a text file, `Aut
  The following command will load the `Auto.data` file into `R` and store it as an object called `Auto`,  in a format referred to as a .  Once the data has been loaded, the `View()` function can be used to view it in a spreadsheet-like window. (*This function can sometimes be a bit finicky. If you have trouble using it, then try the `head()` function instead.*) The `head()` function can also be used to view the first few rows of the data.
 
 
-Download Dataset: [Auto Data](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/Auto.data)
+Download Dataset: [Auto.data](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/Auto.data)
+
+Download csv Dataset: [Auto.csv](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/Auto.csv)
 
 ```{r chunk25}
 Auto <- read.table("data/Auto.data")
@@ -247,7 +264,6 @@ tells `R` that the first line of the file contains the variable names, and using
 be treated as a missing element of the data matrix. 
 
 ```{r chunk26}
-# Another type of dataset to load
 Auto <- read.table("data/Auto.data", header = T, na.strings = "?", stringsAsFactors = T)
 
 # View(Auto)
@@ -257,6 +273,14 @@ Auto[1:4, ]
 
 The `stringsAsFactors = T` argument tells `R` that any variable containing character strings should be interpreted as a qualitative variable, and that each distinct character string represents a distinct level for that qualitative variable.
 An easy way to load  data from Excel into `R` is to save it as a csv (comma-separated values) file, and then use the `read.csv()` function.
+
+
+```{r chunk27}
+Auto <- read.csv("data/Auto.csv", na.strings = "?", stringsAsFactors = T)
+View(Auto)
+dim(Auto)
+Auto[1:4, ]
+```
 
 The `dim()` function tells us that the data has $397$ observations, or rows, and nine variables, or columns. There are various ways to deal with the missing data.  In this case,   only five of the rows contain missing observations,
 and  so we choose to use the `na.omit()` function to simply remove these rows.
