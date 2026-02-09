@@ -26,7 +26,7 @@ table th:nth-of-type(2) {
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [2-1. Modern Data Wrangling](lecture/2-1-data-wrangling.html)    |                                     |
+| [2-1. Modern Data Wrangling](lecture/2-1-data-wrangling.html)    |[2-1. Data Wrangling Examples](lab/lab-2-1-data-wrangling-examples.html)|
 | [2-2. dplyr package](lecture/2-2-dplyr.html)    |                                     |
 
 ### Advanced Visualization Tools
