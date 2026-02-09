@@ -19,9 +19,9 @@ editor_options:
 > -- Jeff Leek
 
 
-# Most Time-Consuming Data Science Task: Data Cleaning (80% of the work)
+# Most Time-Consuming Data Science Task: Data Cleaning 
 
-[**Data preparation** accounts for about 80% of the work of data scientists](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#6a089d126f63)
+80% of the work - [**Data preparation** accounts for about 80% of the work of data scientists](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#6a089d126f63)
 
 ![](figure/DataPreparation.jpg){width=80%}
 
@@ -30,7 +30,13 @@ In business analytics, data comes from various sources such as databases, spread
 
 Data cleaning is a crucial step in the process of preparing data for analysis in the field of business analytics. It involves *identifying and correcting* errors, inconsistencies, and inaccuracies in the dataset to ensure its **reliability** and **quality**. 
 
-# Data cleaning is a crucial step
+# WHY data cleaning is a crucial step {.bigger .incremental}
+
+- Organizational data often represent multiple truths
+- Organizations are increasingly integrating internal and external data sources
+- Analysts need to understand what assumptions or nuances are represented by the data
+
+# Do you enjoy it?
 
 > It is important and time-consuming, 
 >
@@ -48,8 +54,7 @@ In R programming language, data wrangling skills are essential for efficiently m
 6. Handling Dates and Times
 7. Handling Strings
 8. Looping and Conditional Statements
-9. Error Handling
-10. Efficient Coding Practices
+9. Efficient Coding Practices
 
 By performing thorough data cleaning, business analysts can improve the quality and reliability of their analyses, leading to more accurate insights and better-informed business decisions. It lays the foundation for successful data analysis and ensures that businesses can trust the results derived from their data-driven initiatives.
 
@@ -67,8 +72,9 @@ R supports the importing from various sources such as CSV files, Excel spreadshe
 | Web APIs: `library(httr)`     | `GET(url = NULL,...)`           |  |
 
 
+# Data Importing { .bigger .incremental}
 
-# What about other flat files? {.center .bigger .incremental}
+## What about other flat files? {.center .bigger .incremental}
 
 ![](figure/FlatFiles.png){width=70%}
 
@@ -77,13 +83,16 @@ R supports the importing from various sources such as CSV files, Excel spreadshe
 We focus on `read.csv()` function to read in .csv files, and `read_excel()` to read in .xlsx files. 
 
 1. Example 1: Importing data from a CSV file ([Auto.csv](https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/Auto.csv))
+
 ```{r}
 Auto <- read.csv("data/Auto.csv")
 # View(Auto)
 head(Auto)
 ```
 
-2. Example 2: Importing data from an Excel spreadsheet ([RetailSales2018_clean.xlsx](https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/RetailSales2018_clean.xlsx))
+2. Example 2: Importing data from an Excel spreadsheet
+
+([RetailSales2018.xlsx](https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/RetailSales2018.xlsx)); ([RetailSales2018_clean.xlsx](https://xiaorui.site/Data-Mining-Business-Analytics/lecture/data/RetailSales2018_clean.xlsx))
 
 ```{r}
 library(readxl)
@@ -91,9 +100,50 @@ Retail <- read_xlsx(path = "data/RetailSales2018.xlsx")
 head(Retail)
 ```
 
-# Data Cleaning
+# Learn about the data  { .bigger .incremental}
+
+- So what are the first things we want to know about our data?
+
+- ?
+- ?
+- ?
+- ?
+
+# Data Cleaning { .bigger .incremental}
 
 Skills to clean and preprocess data, which may involve handling missing values (`NA`), removing duplicates, converting data types, dealing with outliers, and detecting and correcting errors in the dataset using functions like `na.omit()`, `complete.cases()`, `duplicated()`, and various functions from the `dplyr` and `tidyr` packages.
+
+# Data Cleaning { .bigger .incremental}
+
+- `na.omit()` : Removes any rows that contain at least one NA.
+
+```{r}
+df <- data.frame(
+  x = c(1, 2, NA),
+  y = c(4, NA, 6)
+)
+
+na.omit(df)
+```
+
+# Data Cleaning { .bigger .incremental}
+
+- `complete.cases()` : Returns a logical vector indicating which rows have no missing values.
+
+```{r}
+complete.cases(df)
+```
+
+# Data Cleaning { .bigger .incremental}
+
+- `duplicated()`: Identifies duplicate values or rows, marking all but the first occurrence as TRUE.
+
+```{r}
+x <- c(1, 2, 2, 3, 1)
+duplicated(x)
+```
+
+# Data Cleaning { .incremental}
 
 ## Example 1: Removing useless rows
 
@@ -106,11 +156,15 @@ Retail2 <- Retail2[-1, ]
 Retail2[1:3,]
 ```
 
+# Data Cleaning { .bigger .incremental}
+
 ## Example 2: Handling missing values
 ```{r}
 clean_Retail <- na.omit(Retail2)
 dim(clean_Retail)
 ```
+
+# Data Cleaning { .bigger .incremental}
 
 ## Example 3: Removing duplicates:
 
@@ -144,10 +198,6 @@ Ability to manipulate and process character strings, including pattern matching,
 # Looping and Conditional Statements
 
 Understanding of control structures like loops (`for`, `while`) and conditional statements (`if`, `else`, `ifelse`) to automate repetitive tasks and apply conditional operations on data.
-
-# Error Handling
-
-Skills to handle errors and exceptions that may occur during data wrangling operations, including debugging techniques and using functions like `tryCatch()`.
 
 # Efficient Coding Practices
 
