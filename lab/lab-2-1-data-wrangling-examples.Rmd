@@ -1,0 +1,98 @@
+---
+title: "Data Wrangling Examples in R"
+author: "Xiaorui (Jeremy) Zhu"
+date: "01/08/2026"
+output:
+  slidy_presentation:
+    font_adjustment: +2
+    footer: "Copyright (c) 2025, Xiaorui (Jeremy) Zhu"
+    # df_print: paged
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning=FALSE, message = FALSE)
+```
+
+# Aircraft data 
+
+## Import 
+
+[aircraft.xlsx](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/aircraft.xlsx)
+
+1. What spreadsheets are contained in the aircraft.xlsx file?
+2. Read in the Trainers worksheet data without the header
+information.
+
+# Q1 Solution
+
+1. What spreadsheets are contained in the aircraft.xlsx file?
+```{r}
+library(readxl)
+excel_sheets("data/aircraft.xlsx")
+```
+
+# Q2 Solution
+
+2. Read in the Trainers worksheet data without the header information.
+```{r}
+aircraft <- read_excel("data/aircraft.xlsx", sheet = "Trainers", skip = 3)
+head(aircraft)
+```
+
+
+# Question 3 to 7
+
+3. Look at the summary information for this data. Anything seem odd?
+
+4. Which aircraft MDs are represented?
+
+5. Are there any missing years between 1996-2014 in this data?
+
+6. 90% of flying hours fall under what value?
+
+7. What is the spread of the range of costs?
+
+# Q3 Solution
+
+3. Look at the summary information for this data. Anything seem odd??
+
+```{r}
+
+```
+
+# Q4 Solution
+
+4. Which aircraft MDs are represented?
+```{r}
+
+```
+
+# Q5 Solution
+
+5. Are there any missing years between 1996-2014 in this data?
+
+```{r}
+
+```
+
+# Q6 Solution
+
+6. 90% of flying hours fall under what value?
+
+```{r}
+
+```
+
+# Q7 Solution
+
+7. What is the spread of the range of costs?
+
+```{r}
+
+```
+
+
+[go to top](#header)
