@@ -18,6 +18,8 @@ knitr::opts_chunk$set(eval = TRUE, warning=FALSE, message = FALSE)
 
 # Aircraft data 
 
+The aircraft.xlsx dataset contains columns for MD ([United States Air Force (USAF)](https://en.wikipedia.org/wiki/List_of_active_United_States_Air_Force_aircraft) ), FH (Flight Hours), FY (Fiscal Year), Cost, and Gallons. 
+
 ## Import 
 
 [aircraft.xlsx](https://xiaorui.site/Data-Mining-Business-Analytics/lab/data/aircraft.xlsx)
