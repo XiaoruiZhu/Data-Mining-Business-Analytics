@@ -11,7 +11,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-
 ```{r setup, echo=FALSE, include=FALSE}
 knitr::opts_chunk$set(eval = TRUE, warning=FALSE, message = FALSE)
 ```
@@ -45,7 +44,7 @@ head(aircraft)
 ```
 
 
-# Question 3 to 7
+# Numeric Understanding of data: Question 3 to 7
 
 3. Look at the summary information for this data. Anything seem odd?
 
@@ -98,5 +97,37 @@ quantile(aircraft$FH, prob = .9)
 range(aircraft$Cost)
 ```
 
+[go to top](#header)
+
+# Visual Understanding of data: Question 8 to 10
+8. How would you describe the distribution of flying hours?
+
+9. If we wanted to focus on only the trainers with the largest variance in flying hours, which MDs would we select?
+
+10. Are all FYs equally represented?
+
+# Q8 Solution
+
+8. How would you describe the distribution of flying hours?
+
+```{r}
+hist(aircraft$FH, breaks = 50)
+```
+
+# Q9 Solution
+
+9. If we wanted to focus on only the trainers with the largest variance in flying hours, which MDs would we select?
+
+```{r}
+boxplot(FH ~ MD, data = aircraft)
+```
+
+# Q10 Solution
+
+10. Are all FYs equally represented?
+
+```{r}
+barplot(table(aircraft$FY))
+```
 
 [go to top](#header)

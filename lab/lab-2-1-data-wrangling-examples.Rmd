@@ -1,7 +1,7 @@
 ---
 title: "Data Wrangling Examples in R"
 author: "Xiaorui (Jeremy) Zhu"
-date: "01/08/2026"
+date: "01/25/2026"
 output:
   slidy_presentation:
     font_adjustment: +2
@@ -45,7 +45,7 @@ head(aircraft)
 ```
 
 
-# Question 3 to 7
+# Numeric Understanding of data: Question 3 to 7
 
 3. Look at the summary information for this data. Anything seem odd?
 
@@ -96,5 +96,37 @@ head(aircraft)
 
 ```
 
+[go to top](#header)
+
+# Visual Understanding of data: Question 8 to 10
+8. How would you describe the distribution of flying hours?
+
+9. If we wanted to focus on only the trainers with the largest variance in flying hours, which MDs would we select?
+
+10. Are all FYs equally represented?
+
+# Q8 Solution
+
+8. How would you describe the distribution of flying hours?
+
+```{r}
+
+```
+
+# Q9 Solution
+
+9. If we wanted to focus on only the trainers with the largest variance in flying hours, which MDs would we select?
+
+```{r}
+
+```
+
+# Q10 Solution
+
+10. Are all FYs equally represented?
+
+```{r}
+
+```
 
 [go to top](#header)
