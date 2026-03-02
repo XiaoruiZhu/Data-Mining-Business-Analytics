@@ -381,4 +381,7 @@ that we have created in this `R` session will be available next time.
  Before exiting `R`, we may want to save a record of all of the commands that we typed in the most recent session; this can be accomplished using the `savehistory()` function. Next time we enter `R`, we can load that history using
 the `loadhistory()` function, if we wish. 
 
+[go to top](#header)
+
+[go back to course website](https://xiaorui.site/Data-Mining-Business-Analytics/)
 
