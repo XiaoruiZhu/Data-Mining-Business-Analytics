@@ -33,8 +33,8 @@ table th:nth-of-type(2) {
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [3-1. Advanced Visualization Tools](lecture/3-1-advanced-visualization.html)    |                                     |
-| [3-2. ggplot2 & plotly](lecture/3-2-ggplto2-plotly.html)    |                                     |
+| [3-1. Advanced Visualization Tools: ggplot2 & plotly](lecture/3-1-advanced-visualization.html)    |                                     |
+
 
 ### AI Adoption in Data Analytics
 

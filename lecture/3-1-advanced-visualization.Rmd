@@ -1,0 +1,214 @@
+---
+title: "Advanced Visualization in R"
+author: "Xiaorui (Jeremy) Zhu"
+date: "02/10/2024"
+output:
+  slidy_presentation:
+    font_adjustment: +2
+    footer: "Copyright (c) 2024, Xiaorui (Jeremy) Zhu"
+    # df_print: paged
+editor_options: 
+  chunk_output_type: console
+---
+
+# Why we need to present data analysis stratigically?
+
+Presenting data is not just simply dropping some statistics/numbers into your PPT slides or report. It is an art of choices about style, flow and appropriate use of tools. [Examples](https://venngage.com/blog/data-presentation-examples/)  
+
+Former CEO of Hewlett-Packard, Carly Fiorina once said: “The goal is to turn data into information, and information into insight.”
+
+Then how? 
+
+# Example Case: 1974 *Motor Trend* Car Road Tests (`mtcars` dataset)
+
+The classic mtcars dataset contains fuel consumption and design specifications for 32 automobiles from the 1970s. Key variables include:
+
+1. miles per gallon (mpg) as a measure of fuel efficiency, 
+2. vehicle weight (wt), 
+3. number of cylinders (cyl), 
+
+which together capture important trade-offs between performance, size, and efficiency. Although relatively small, the dataset is widely used for illustrating exploratory data analysis because the relationships among variables are intuitive yet nontrivial.
+
+# Example Case: 1974 *Motor Trend* Car Road Tests (`mtcars` dataset)
+
+The analytically context of this problem is to explore **how fuel efficiency varies with vehicle weight**, and how this relationship differs across engine configurations. 
+
+Heavier vehicles generally consume more fuel, but the strength and shape of this relationship can vary by the number of cylinders, reflecting differences in engine power and design. 
+
+Visualizing these relationships helps identify broad patterns, potential outliers, and group-level differences that would be less apparent from summary statistics or regression output alone.
+
+# What question should a data analyst ask? 
+
+In this example, the plot you need is the one to show the relationship between vehicle weight and fuel efficiency, while color distinguishes different engine types.
+
+So the scatter plot is the one comes to your mind. But what about the drawbacks of the following one:
+
+```{r}
+# Scatter plot for the relationship between mpg and weight (1000 lbs)
+plot(mtcars$mpg ~ mtcars$wt)
+
+# Scatter plot for the relationship between mpg and displacement
+plot(mtcars$mpg ~ mtcars$disp)
+```
+
+# What question should a data analyst ask? 
+
+A good visualization should provides information at multiple levels. At a high level, it communicates overall trends and comparative patterns across groups. At a deeper level, it allows students to notice variation, clustering, and outliers, which are critical for understanding real-world data and for motivating later statistical modeling choices. When the plot is interactive, students can explore individual observations, reinforcing the idea that aggregate patterns are built from individual data points.
+
+In addition, a self-explained plot is especially important because it supports insights delivery. 
+
+Clear titles, axis labels, and legends help students interpret the figure independently, while interactive features encourage active engagement rather than passive viewing. 
+
+This not only improves comprehension during the presentation but also helps audiences to grasp insights from the analyses, emphasizing clarity, transparency, and effective communication of results.
+
+# `ggplot2` package: advanced plots with self-explained details 
+
+How to explore the relationship between a car's weight and its fuel efficiency?
+
+```{r mtcars-ggplot2, message=FALSE}
+# Load libraries
+library(ggplot2)
+
+# Scatter plot for the relationship between mpg and weight (1000 lbs)
+vis_scatterplot <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Miles per Gallon vs Weight",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon"
+  ) +
+  theme_minimal()
+
+# display the plot
+vis_scatterplot
+```
+
+# `ggplot2` package: advanced plots with self-explained details 
+
+How to explore the relationship between a car's weight and its fuel efficiency, while also accounting for the number of cylinders in the engine.
+
+```{r mtcars-ggplot, message=FALSE}
+# Load libraries
+library(ggplot2)
+
+# Create a ggplot
+vis_plot <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point(size = 3) +
+  labs(
+    title = "Miles per Gallon vs Weight",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon",
+    color = "Cylinders"
+  ) +
+  theme_minimal()
+
+# display the plot
+vis_plot
+```
+
+Key Takeaways: Negative Correlation. 
+
+There is a clear "downhill" trend; heavier cars require more fuel to move.
+
+Cylinder Grouping:
+
+- 4 Cylinders (Red): Lightest and most efficient (22–34 MPG).
+
+- 6 Cylinders (Green): Mid-weight with moderate efficiency (18–22 MPG).
+
+- 8 Cylinders (Blue): Heaviest and least efficient (10–19 MPG).
+
+The "Heavy" Gap: The cars weighing over 5,000 lbs are exclusively 8-cylinder models with the lowest MPG in the dataset.
+
+# `plotly` package: interactive web graphic rather than static graphic 
+
+The ggplotly() function converts a static ggplot2 graphic into an interactive plotly web graphic. This allows for features like **hovering over data points** to see details, **zooming**, and **toggling traces** (interactive legends). 
+
+A data analyst or data scientist benefits from these three interactive functionalities because they directly support efficient exploration, validation, and communication of data insights.
+
+- **Hovering** enables quick access to exact values without cluttering the visualization. This is especially useful for identifying outliers, checking suspicious observations, or validating whether specific data points align with expectations, all without repeatedly referring back to the raw dataset or redoing the analysis.
+
+- **Zooming** and **panning** allow analysts to examine local patterns that may be hidden in dense or overlapping regions of the plot. This helps in detecting nonlinear relationships, clusters, or anomalies that could be missed in a static, full-scale view, while still retaining the ability to zoom back out for overall context.
+
+- **Interactive legends** make it easy to isolate and compare subgroups within the data. By toggling categories on and off, analysts can focus on one group at a time, reduce visual clutter, and more clearly assess differences across groups, which is essential for exploratory analysis and for communicating results to stakeholders.
+
+# `plotly` package: interactive web graphic 
+
+```{r, message=FALSE}
+# load the package
+library(plotly)
+# Convert the ggplot to interactive plotly object
+ggplotly(vis_plot)
+```
+
+What this gives you
+
+-	Hover functionality (showing x, y, color)
+-	Zooming and panning
+-	Interactive legend (click to hide/show groups)
+
+# `ggplot2` and `plotly` exercise: your turn!
+
+The Challenge: "The Efficiency vs. Power Trade-off"
+
+Objective: Modify the existing code to explore how Horsepower (hp) relates to Fuel Economy (mpg), while distinguishing between different Transmission types (am).
+
+Instructions:
+
+Change the Variables: Update the x-axis to represent hp (Horsepower) instead of weight.
+
+Aesthetic Mapping: Change the color argument to use the am column (Transmission).
+
+Hint: 0 = automatic, 1 = manual. Remember to use factor(am) so ggplot treats it as a category!
+
+Add a Layer: Add geom_smooth(method = "lm", se = FALSE) to draw a straight trend line through the data.
+
+Refine Labels: Update the labs() function to provide a clear title and axis titles (e.g., "Horsepower" and "Transmission Type").
+
+Bonus: Change the shape of the points based on the number of cylinders (cyl).
+
+# `ggplot2` and `plotly` exercise: your turn!
+
+Question for EducateUs AI: Please draw a scatter plot ggplot in R to show how Horsepower (hp) relates to Fuel Economy (mpg), while distinguishing between different Transmission types (am).
+
+```{r, echo=FALSE, eval=FALSE}
+# Solution Code
+vis3_plot <- 
+  ggplot(mtcars, aes(x = hp, y = mpg, color = factor(am), shape = factor(cyl))) +
+# ggplot(mtcars, aes(x = hp, y = mpg, color = factor(am))) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) + # Adds the linear trend line
+  labs(
+    title = "Efficiency by Horsepower and Transmission",
+    x = "Gross Horsepower",
+    y = "Miles per Gallon",
+    color = "Transmission (0=Auto, 1=Manual)"
+  ) +
+  theme_minimal()
+
+# load the package
+library(plotly)
+# Convert the ggplot to interactive plotly object
+ggplotly(vis3_plot)
+```
+
+# Bonus: Change the shape of the points based on the number of cylinders (cyl).
+
+Question for EducateUs AI: Change the shape of the points based on the number of cylinders (cyl).
+
+```{r, echo=FALSE, eval=FALSE}
+# Solution Code
+ggplot(mtcars, aes(x = hp, y = mpg, color = factor(am), shape = factor(cyl))) +
+# ggplot(mtcars, aes(x = hp, y = mpg, color = factor(am))) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) + # Adds the linear trend line
+  labs(
+    title = "Efficiency by Horsepower and Transmission",
+    x = "Gross Horsepower",
+    y = "Miles per Gallon",
+    color = "Transmission (0=Auto, 1=Manual)"
+  ) +
+  theme_minimal()
+```
+
+[go to top](#header)
