@@ -212,3 +212,5 @@ These skills are crucial for effectively managing and preparing data for analysi
 Let's apply what you've learned to a real case. 
 
 [go to top](#header)
+
+[go back to course website](https://xiaorui.site/Data-Mining-Business-Analytics/)
