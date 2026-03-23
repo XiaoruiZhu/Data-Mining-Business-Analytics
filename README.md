@@ -55,7 +55,7 @@ table th:nth-of-type(2) {
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [6-1. Classical Regression & Classification Methods](lecture/6-1-introduction-to-regression.html)    |                                     |
+| [6-1. Classical Regression & Classification Methods](lecture/6-1-introduction-to-regression-classification.html)    |                                     |
 | [6-2. Classification and Regression Tree (CART)](lecture/6-2-performance-evaluation.html)    |                                     |
 
 ### Clustering Analysis
