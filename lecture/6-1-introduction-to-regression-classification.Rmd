@@ -1,0 +1,483 @@
+---
+title: "Examples of Data Mining Algorithms and General Principles"
+author: "Xiaorui (Jeremy) Zhu"
+date: "03/09/2026"
+output:
+  slidy_presentation:
+    font_adjustment: 2
+    footer: Copyright (c) 2026, Xiaorui (Jeremy) Zhu
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Supervised Learning {.bigger .incremental}
+
+- Labeled data
+- The goal is to predict or explain certain outcome
+- Types of Data Mining problems:
+  - Regression: outcome is continuous
+  - Classification: outcome is categorical
+- Popular ML algorithms:
+  - Least square, nearest neighbor, CART, gradient boosting, neural network, deep learning
+
+# A simple linear regression
+
+![](example-lm.png){width=55%}
+
+The estimated linear regression model is
+
+$$
+\textit{Expected Housing Price} = -34.7 + 9.1 \times \textit{Number of Room}
+$$
+
+# In general {.bigger .incremental}
+
+- Linear regression model
+
+$$
+Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon
+$$
+
+- The estimated model is
+
+$$
+\hat{Y} = \hat{f}(\mathbf{x}) = \hat{\boldsymbol{\beta}}^{\top}\mathbf{x}
+$$
+
+<!-- - Solve $\hat{\beta}$ using least square -->
+
+<!-- $$ -->
+<!-- \hat{\boldsymbol{\beta}} = \arg\min_{\boldsymbol{\beta}} \sum_{i=1}^{n}(y_i-\boldsymbol{\beta}^T \mathbf{x}_i)^2 -->
+<!-- $$ -->
+
+
+# From Continuous to Categorical Outcome {.bigger .incremental}
+
+![](catdog1.jpeg)
+
+# Classification -- an illustration {.bigger .incremental}
+
+![](eg-classification.jpg){width=50%}
+
+<span style="font-size: 0.5em;">Source: ISLR, p. 38, Figure 2.13</span>
+
+# Classification Methods {.bigger .incremental}
+
+- K-Nearest Neighbor
+- Logistic regression
+- Classification tree
+- Random forest
+- Boosted tree
+- Support vector machine
+- Neural networks
+- Deep learning
+- ...
+
+# Why Not Linear Regression {.bigger .incremental}
+
+$$
+\hat{p}= -1.5+2X_1-X_2
+$$
+
+- Example: default prediction
+  - Default ($Y=1$) vs. Nondefault ($Y=0$)
+  - $X_1$: credit card balance level, $X_2$: income level
+- Suppose the linear probability model (LPM):
+- What is the predicted value if a person's balance level is 1 and income level is 3?
+
+# An Illustration {.bigger .incremental}
+
+![](fig1.png)
+
+![](fig2.png)
+
+# An Illustration {.bigger .incremental}
+
+![](LPM-Logit.png)
+
+# Classification {.bigger .incremental}
+
+|Threshold | <0.1 | >0.1 |
+| --- | --- | --- |
+| Class | Nondefault | Default |
+
+- Most DM algorithms produce probabilistic outcome
+  - e.g. probability that X belongs to each class
+- Classification is based on certain decision rules
+
+# Classification: Logistic Regression {.bigger .incremental}
+
+$$
+\mathbb{P}(y_i=1|\mathbf{x}_i) = \frac{1}{1+\exp(-\boldsymbol \beta^T \mathbf{x}_i)}
+$$
+
+- For binary response:
+  - Sigmoid function: $s(u)=\frac{1}{1+e^{-u}}$
+  - Interpretation: **probability} of event conditional on $X$
+- More than two classes: *multinomial logistic model}
+
+
+# Prediction --- From Probability to Class {.bigger .incremental}
+
+- Direct outcome of model: probability
+- Next step: classification
+- Need decision rule (cut-off probability -- p-cut)
+
+# Confusion Matrix {.bigger .incremental}
+
+| | **Pred=1** | **Pred=0** |
+| --- | --- | --- |
+| **True=1** | True Positive (TP) | False Negative (FN) |
+| **True=0** | False Positive (FP) | True Negative (TN) |
+
+- Classification table based on a specific cut-off probability
+- Used for model assessment
+- FP: type I error; FN: type II error
+- { Different p-cut results in different confusion matrix}
+
+# Some Useful Measures {.bigger .incremental}
+
+- Misclassification rate (MR) = $\frac{\text{FP+FN}}{\text{Total}}$
+- True positive rate (TPR) = $\frac{\text{TP}}{\text{TP+FN}}$: Sensitivity or Recall
+- True negative rate (TNR) = $\frac{\text{TN}}{\text{FP+TN}}$: Specificity
+- False positive rate (FPR) = $\frac{\text{FP}}{\text{FP+TN}}$: 1 -- Specificity
+
+# ROC Curve {.bigger .incremental}
+
+- Receiver Operating Characteristic
+- Plot of FPR (X) against TPR (Y) at various p-cut values
+- Overall model assessment (not for a particular decision rule)
+- Unique for a given model
+
+# ROC Curve {.bigger .incremental}
+
+![](fig3.png){width=60%}
+
+# AUC of ROC Curve 
+
+The overall performance of the model can also be assessed using the area under the curve (AUC) measure, which ranges from 0 (worst possible model) to 1 (perfect model).
+
+- The diagonal line has an AUC value of .5.
+
+# Classification: K-nearest neighbor {.bigger .incremental}
+
+Idea: 
+
+- It uses observations from the past that are the most similar to new observations to classify or predict the target variable.
+- KNN identifies a number of existing observations that are most similar to the new observation for classification.
+- 1st component: similarity measure (typically standardized and Euclidean distance).
+    - How to define the neighbor?
+    - How to find closest points to $\mathbf{x}_i$?
+- 2nd component: Number of nearest neighbors to consider, k.
+  
+
+<!-- - Model: -->
+
+<!-- $$ -->
+<!-- \hat{Y} = \hat{f}(\mathbf{x}) = \frac{1}{k}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} y_i -->
+<!-- $$ -->
+
+<!-- where $N_k(\mathbf{x})$ is the neighborhood of $\mathbf{x}$ defined by the $k$ closest points $\mathbf{x}_i$. -->
+
+<!-- - $k$ determines the flexibility of the model -->
+<!-- # Above contents are too hard for undergraduate -->
+
+# K-nearest neighbor 
+
+![](knn.png){width=70%}
+
+# Distance-based Similarity Measures
+
+![](dist.png){width=70%}
+
+# What is the impact of $k$ -- an example {.bigger .incremental}
+
+![](knnesl.png){width=65%}
+
+<span style="font-size: 0.5em;">Source: ESL, pp. 15--16 </span>
+
+# K-nearest neighbor algorithm
+
+- Step 1: Selecting the optimal value of K: number of nearest neighbors 
+- Step 2: Calculating distance: Euclidean distance is widely used. 
+- Step 3: Finding Nearest Neighbors
+    - The k data points with the smallest distances to the target point are nearest neighbors.
+- Step 4: Voting for Classification or Taking Average for Regression
+
+For example, to classify an email as spam or not spam, the K-Nearest Neighbors (KNN) algorithm examines the K most similar emails in the dataset. 
+
+It then checks the categories of these neighboring emails and assigns the new email to the category that appears most frequently, a process known as majority voting.
+
+# Clustering -- an unsupervised learning method {.bigger .incremental}
+
+- Goal: find subgroups of a sample observations
+  - Not based on any single variable (e.g. gender, race)
+  - Based on all given variables
+- The number of subgroup is subjective
+- Approaches:
+  - K-means clustering
+  - Hierarchical clustering
+  - Model-based clustering
+
+# Application: Clustering Iris flowers in `Iris` dataset
+
+This is a very famous dataset in almost all data mining, machine learning courses, and it has been an R build-in dataset. The dataset consists of 50 samples from each of three species of Iris flowers (Iris setosa, Iris virginicaand Iris versicolor). Four features(variables) were measured from each sample, they are the length and the width of sepal and petal, in centimeters. It is introduced by Sir Ronald Fisher in 1936 with 3 Iris Species.
+
+```{r}
+# Load the iris dataset
+data("iris")
+plot(x = iris$Petal.Length, y = iris$Sepal.Length,
+     main = "Scatter Plot of Sepal Length vs Petal Length", # Plot title
+     xlab = "Petal Length",                                # X-axis label
+     ylab = "Sepal Length",                                # Y-axis label
+     pch = 19                                             # Use solid circles for points
+     )
+```
+
+<!-- ![](eg-iris1.png){width=50%} -->
+
+# An example -- Iris data
+
+![](eg-iris2.png){width=60%}
+
+# An example -- Iris data
+
+![](eg-iris3.png){width=50%}
+
+# K-means clustering -- step-by-step {.bigger .incremental}
+
+Run the following R code, and see what it does.
+
+```{r, echo=FALSE}
+iris1 <- scale(iris[,-c(2,4,5)])
+n <- nrow(iris1)
+index <- sample(2, n, replace = TRUE)
+iris.sub1 <- iris1[index == 1,]
+iris.sub2 <- iris1[index == 2,]
+mean.sub1 <- apply(iris.sub1, 2, mean)
+mean.sub2 <- apply(iris.sub2, 2, mean)
+
+plot(iris1, col = index + 1, pch = 16)
+points(x = mean.sub1[1], y = mean.sub1[2], col = 2, pch = 8)
+points(x = mean.sub2[1], y = mean.sub2[2], col = 3, pch = 8)
+```
+
+# This is a random grouping (first step)
+
+![](iris-kmeans1.png){width=55%}
+
+# The next step {.bigger .incremental}
+
+Run the following R code, and see what it does.
+
+```{r, echo=FALSE}
+Eudist <- function(x, y) sqrt(sum((x - y)^2))
+
+d1 <- sapply(1:n, function(i) Eudist(mean.sub1, iris1[i,]))
+d2 <- sapply(1:n, function(i) Eudist(mean.sub2, iris1[i,]))
+index.new <- apply(cbind(d1, d2), 1, which.min)
+iris.sub1 <- iris1[index.new == 1,]
+iris.sub2 <- iris1[index.new == 2,]
+mean.sub1 <- apply(iris.sub1, 2, mean)
+mean.sub2 <- apply(iris.sub2, 2, mean)
+
+plot(iris1, col = index.new + 1, pch = 16)
+points(x = mean.sub1[1], y = mean.sub1[2], col = 2, pch = 8)
+points(x = mean.sub2[1], y = mean.sub2[2], col = 3, pch = 8)
+```
+
+# Data points are regrouped (second step)
+
+How does this happen?
+
+![](iris-kmeans2.png){width=55%}
+
+
+# Let's repeat the second step {.bigger .incremental}
+
+```{r, echo=FALSE}
+d1 <- sapply(1:n, function(i) Eudist(mean.sub1, iris1[i,]))
+d2 <- sapply(1:n, function(i) Eudist(mean.sub2, iris1[i,]))
+index.new <- apply(cbind(d1, d2), 1, which.min)
+iris.sub1 <- iris1[index.new == 1,]
+iris.sub2 <- iris1[index.new == 2,]
+mean.sub1 <- apply(iris.sub1, 2, mean)
+mean.sub2 <- apply(iris.sub2, 2, mean)
+
+plot(iris1, col = index.new + 1, pch = 16)
+points(x = mean.sub1[1], y = mean.sub1[2], col = 2, pch = 8)
+points(x = mean.sub2[1], y = mean.sub2[2], col = 3, pch = 8)
+```
+
+Note that the code does not change at all. Why?
+
+# Data points are regrouped again
+
+![](iris-kmeans3.png){width=55%}
+
+# We can keep repeating this step, until... {.bigger .incremental}
+
+Members in each cluster do not change, which means the algorithm **converges**. How can we translate it into some numeric scores?
+![](iris-kmeansn.png){width=55%}
+
+# Statistics behind k-means clustering {.bigger .incremental}
+
+The algorithm attempts to:
+
+- Minimize variance within clusters
+- Maximize variance between clusters
+- Think about total variance too
+
+Instead of computing variance, we compute **sum squared error (SSE)**.
+
+- For a single variable $X$, SSE is defined as
+
+$$
+SSE(X)= \sum_{i=1}^{n}(X_i-\bar{X})^2
+$$
+
+- For multiple variables $\mathbf{X}=(X_1, \ldots, X_p)$, SSE is defined as
+
+$$
+SSE(\mathbf{X}) = \sum_{i=1}^{n}\sum_{j=1}^{p}(X_{ij}-\bar{X}_j)^2
+$$
+
+# Statistics behind k-means clustering {.bigger .incremental}
+
+- Computing $SSE(\mathbf{X})$ for the entire sample gives **total sum squared error (SST)**
+- Computing $SSE(\mathbf{X})$ for each cluster gives **within-group sum squared error**
+- **Between-group sum square** is the difference between total SS and the sum of within SS
+- Exercise: revisit the algorithm we just performed and compute the above three measures at the end of each step. How are they changing over iterations?
+
+# Recap
+
+![](kmeans.png){width=55%}
+
+Here is a very good animation to illustrate the k-means clustering algorithm:
+
+[Visualizing K-means Clustering](https://www.naftaliharris.com/blog/visualizing-k-means-clustering/)
+
+# K-means algorithm {.bigger .incremental}
+
+1. Randomly find $k$ data points (observations) as the initial centers
+2. For each data point, find the closest center and label it. Now you have $k$ clusters
+3. Re-calculate the centers of current clusters
+4. Repeat step 2 and step 3 until the centers do not change
+
+<!-- # Regression problem {.bigger .incremental} -->
+
+<!-- One of the most common metrics is the *mean squared error*. -->
+
+<!-- - Denote training set $Tr = \{x_i, y_i\}_1^N$, and testing set $Te = \{x_i, y_i\}_1^M$ -->
+
+<!-- $$ -->
+<!-- \text{MSE}_{Tr} = \frac{1}{N}\sum_{i \in Tr}(y_i-\hat{f}(x_i))^2 -->
+<!-- $$ -->
+
+<!-- $$ -->
+<!-- \text{MSE}_{Te} = \frac{1}{M}\sum_{i \in Te}(y_i-\hat{f}(x_i))^2 -->
+<!-- $$ -->
+
+<!-- - Training error, $\text{MSE}_{Tr}$, may be biased due to overfitting -->
+<!-- - In this course, we denote *MSE* as training error, and *MSPE* as testing error -->
+
+# Classification problems {.bigger .incremental}
+
+- Response variable is **qualitative**
+- Train a classifier $\hat{C}(x)$ that can label any new input data $x$
+- It usually involves a decision rule
+- Prediction (testing) error: misclassification rate (MR)
+
+<!-- $$ -->
+<!-- MR_{Te} = \frac{1}{M}\sum_{i \in Te} \mathbb{I}[y_i \ne \hat{C}(x_i)] -->
+<!-- $$ -->
+
+# Bias-Variance Tradeoff {.bigger .incremental}
+
+- This is a very important tradeoff that governs the choice of statistical learning methods
+- **Bias**: how far the estimator $\bar{X}$ is to the true population mean $\mu$
+  - Unbiased estimator such as sample mean satisfies $\mathbb{E}\bar{X}=\mu$
+- **Variance**: the variation of sample mean $\bar{X}$ is $var(\bar{X}) = \sigma^2/n$
+
+![](Picture1.png){width=55%}
+
+# Bias-Variance Tradeoff {.bigger .incremental}
+
+- **Bias**: how far the estimated model $\hat{f}(x)$ is from the true model $f(x)$
+  - Unbiased estimate is defined as $\mathbb{E}\hat{f}(x)=f(x)$
+  - Usually, we calculate the squared bias: $(\mathbb{E}\hat{f}(x)-f(x))^2$
+- **Variance**: the variation of estimated model $\hat{f}(x)$ based on different training sets
+
+# Bias-Variance Tradeoff
+
+![](fig5.png){width=55%}
+
+Source: [Elite Data Science](https://elitedatascience.com/bias-variance-tradeoff)
+
+# Bias-Variance Tradeoff {.bigger .incremental}
+
+- Suppose the data arise from a model $Y=f(x)+\epsilon$, with $\mathbb{E}(\epsilon)=0$ and $Var(\epsilon)=\sigma^2$
+- Suppose $\hat{f}(x)$ is trained based on some training data, and let $(x_0, y_0)$ be a test observation from the same population
+- The **expected prediction error** can be decomposed to:
+
+$$
+\mathbb{E}[y_0-\hat{f}(x_0)]^2 = \sigma^2 + Bias^2(\hat{f}(x_0)) + Var(\hat{f}(x_0))
+$$
+
+- Typically, as the **flexibility** of $\hat{f}$ increases, its variance increases and its bias decreases
+
+# Model assessment (for supervised learning) {.bigger .incremental}
+
+How do we know if the estimated model $\hat{f}(x)$ is **useful**?
+
+- We never know the true $f(x)$
+- Split sample into training and testing sets
+- Train the model based on training sample by minimizing *training error*
+- Apply the estimated model on the testing sample to calculate the *prediction (testing) error*
+- We care more about testing error than training error
+
+# Prediction error
+
+![](fig3.png){width=55%}
+
+# Accuracy illustration
+
+![](accuracy.png){width=35%}
+
+# K-fold cross-validation {.bigger .incremental}
+
+- Instead of doing training versus testing once, we do it $K$ times
+
+![](cv1.png){width=50%}
+
+- Use 2, 3, 4, 5 as training and 1 as testing
+- Use 1, 3, 4, 5 as training and 2 as testing
+- Keep doing this loop
+- Average the 5 testing errors; that is the CV score
+
+# Leave-one-out cross-validation {.bigger .incremental}
+
+- By the name, it requires repeating the training-testing procedure $n$ times
+- However, for least square linear model, there is a shortcut that makes LOOCV the same as a single model fit
+
+$$
+CV_n=\frac{1}{n}\sum_{i=1}^{n}\left(\frac{y_i-\hat{y}_i}{1-h_i}\right)^2
+$$
+
+where $h_i$ is the diagonal element of the hat matrix.
+
+- In general, the estimates from LOOCV are highly correlated, hence their average can have high variance
+- In practice, $K=5$ or $10$ is recommended
+
+# Summary {.bigger .incremental}
+
+- Supervised learning includes regression and classification
+- K-nearest neighbors relies on similarity and the choice of $k$
+- K-means clustering is an iterative unsupervised learning algorithm
+- Model assessment should focus on testing error
+- The bias-variance tradeoff helps explain model flexibility
+- Cross-validation is a practical tool for model selection and evaluation
+
+[go to top](#header)
