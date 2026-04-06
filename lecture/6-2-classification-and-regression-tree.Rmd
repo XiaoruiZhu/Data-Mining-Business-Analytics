@@ -1,0 +1,225 @@
+---
+title: "Classification and Regression Trees (CART)"
+author: "Xiaorui (Jeremy) Zhu"
+date: "02/04/2026"
+output:
+  slidy_presentation:
+    font_adjustment: 2
+    footer: Copyright (c) 2026, Xiaorui (Jeremy) Zhu
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Supervised Data Mining: Decision Trees
+
+# Learning Objectives {.bigger .incremental}
+
+- Introduction to classification and regression trees.
+- Apply classification trees to classify whether or not the customer responded to the HELOC offer. 
+- Apply classification tree models to classify new records.
+- Apply regression trees to predict numeric response.  
+- Apply classification tree models to predict new records. 
+
+# Introductory Case: Home Equity Line of Credit 1 {.bigger .incremental}
+
+- Established in 1990, Sunnyvale Bank is a local community bank serving businesses, individuals, and nonprofit organizations throughout Southern California. 
+
+- Hayden Sellar, the retail banking manager of Sunnyvale Bank, was taken by surprise when he heard of a recent decline in the banks home equity line of credit (HELOC) business. Hayden does not believe that the decline is due to the competitiveness of the bank's interest rates. 
+
+- After all, customers choose to bank with Sunnyvale for the superior service, not just for low prices. 
+
+- Hayden's intuition suggests that Sunnyvale Bank has not been targeting the right customers to market its HELOC products.
+
+# Introductory Case: Home Equity Line of Credit 2 {.bigger .incremental}
+
+- Hayden compiles data on 500 past customers. Hayden also collects the age, gender, and income from 20 new bank customers. The data include the age, sex, income, and whether or not the customer responded to the HELOC offer (HELOC equals 1 if responded, 0 otherwise).
+
+- Hayden would like to use the data to accomplish the following tasks. Develop a classification tree for predicting whether or not a bank customer will respond to a HELOC offer. Identify which of the 20 new customers are likely to respond to a HELOC offer.
+
+![](cart_rmd_assets/slide_04_img_1.png){width=80%}
+
+
+# Introduction to Classification and Regression Trees 1 {.bigger .incremental}
+
+- Decision trees are a popular supervised data mining technique. 
+- Output displayed as one or more upside-down trees. Easy to interpret. Represents a set of if-then rules.
+- There are three types of nodes. 
+    - Root node: top node of tree, first variable to which a split is applied (branches). 
+    - Interior node: more decision rules applied. 
+    - Leaf/terminal node: classification or predictions given, no more splitting.
+
+# Introduction to Classification and Regression Trees 2 {.bigger .incremental}
+
+- Example: Recall the HELOC introductory case.
+- If age < 50 and income < 100k, then the customer will not respond.
+- If age < 50 and income >= 100k, then the customer will respond.
+- If age >= 50 and income < 50k, then the customer will not respond.
+- If age >= 50 and income >= 50k, then the customer will respond.
+
+![](cart_rmd_assets/slide_06_img_1.png){width=80%}
+
+
+# Introduction to Classification and Regression Trees 3 {.bigger .incremental}
+
+- The splitting process is repeated until each subset contains only cases with similar values for the target variable. 
+
+- **Pure subsets** consist of leaf nodes that contain cases with the same value of the target variable.
+
+- Splitting unitl there is no need to further split pure subsets. 
+
+- The process is recursive. 
+
+# Introduction to Classification and Regression Trees 4 {.bigger .incremental}
+
+- Categorical target variable: **classification tree**
+    - classify class membership of future cases. 
+    - classification tree performance measures: confusion matrix; ROC, AUC
+    
+- Numerical target variable: **regression tree**
+    - predict the value of the outcome variable of future cases.
+    - regression tree performance measures: RMSE, ME, MAD, MAE, MPE, and MAPE.
+    
+- Note: built tree model using training data set, then improve tree model using test data set.
+
+# HELOC Classification Trees Model 1 {.bigger .incremental}
+
+- Example: Import HELOC data file into a data frame and label it df.
+
+```{r, echo=TRUE, eval=FALSE}
+# Build a decision tree model without pruning
+default_tree <- 
+  rpart(formula = HELOC ~ ., 
+        data = trainSet, 
+        method = "class")
+```
+
+```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+library(readxl)
+df <- read_excel("HELOC.xlsx")
+View(df)
+
+# Convert the 'HELOC' variable to a factor
+df$HELOC <- as.factor(df$HELOC)
+
+# Create a training-validation split using stratified sampling
+# Split the dataset: 70% training, 30% validation
+# Using the "createDataPartition()" function in the "caret" package
+library(caret)
+set.seed(1)
+myIndex <- createDataPartition(df$HELOC, p = 0.7, list = FALSE)
+trainSet <- df[myIndex, ]
+validationSet <- df[-myIndex, ]
+
+set.seed(1)
+library(rpart)
+# Build a decision tree model without pruning
+default_tree <- 
+  rpart(formula = HELOC ~ ., 
+        data = trainSet, 
+        method = "class")
+
+# summary(default_tree)
+library(rpart.plot)
+prp(default_tree, type = 1, extra = 1, under = TRUE)
+```
+
+- If a male 37-year-old customer with an income of 14k responded to the HELOC offer?
+
+# HELOC Classification Trees Model 2 {.bigger .incremental}
+
+- Predict the class probabilities
+
+```{r}
+# Predict the class probabilities using the default tree on the validation set
+predicted_prob <- 
+  predict(object = default_tree, 
+          newdata = validationSet, 
+          type = 'prob')
+
+head(predicted_prob)
+```
+
+- Construct the ROC curve and AUC value
+
+```{r, message=FALSE, warning=FALSE}
+validationSet$predicted_prob <- predicted_prob[,2]
+head(validationSet)
+
+# Plot the ROC curve and calculate the AUC
+# use roc() in the "pROC" package
+library(pROC)
+roc_object <- roc(validationSet$HELOC, validationSet$predicted_prob)
+plot.roc(roc_object)
+auc(roc_object)
+```
+
+# Regression Trees {.bigger .incremental}
+
+- Regression trees are constructed using the CART algorithm, which works similarly for classification and regression trees.
+
+- There are three key differences:
+  - The target variable is **numerical**.
+  - The predicted value is the average value of the cases that belong to the same leaf node.
+  - Use MSE rather than the Gini index to measure impurity.
+
+- Tree performance measures: RMSE, ME, MAD, MAE, MPE, and MAPE.
+
+# HELOC Balance Regression Trees 1 {.bigger .incremental}
+
+- Example: Recall the introductory case. Hayden now wants to build a predictive model to identify high-value customers, those that routinely maintain high balances.
+    1. The Balance_Data Worksheet
+
+
+![](cart_rmd_assets/slide_35_img_1.png){width=80%}
+
+
+
+# HELOC Balance Regression Trees 2 {.bigger .incremental}
+
+- Example.
+
+```{r, echo=TRUE, eval=FALSE}
+# Build a default regression tree model using the training data
+default_tree <- rpart(Balance ~ ., data = trainSet, method = "anova")
+```
+
+```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+library(readxl)
+# Import the HELOC_Balance dataset from Excel
+HELOC_Balance <- read_excel("HELOC_Balance.xlsx")
+
+# Create a training-validation split using stratified sampling
+# Split the dataset: 70% training, 30% validation
+# Using the "createDataPartition()" function in the "caret" package
+# Split the dataset: 70% training, 30% validation
+myIndex <- createDataPartition(HELOC_Balance$Balance, p = 0.7, list = FALSE)
+trainSet <- HELOC_Balance[myIndex, ]
+validationSet <- HELOC_Balance[-myIndex, ]
+
+# Set seed for reproducibility again before tree building
+set.seed(1)
+
+# Build a default regression tree model using the training data
+default_reg_tree <- rpart(Balance ~ ., data = trainSet, method = "anova")
+
+# Visualize the default regression tree
+prp(default_reg_tree, type = 1, extra = 1, under = TRUE)
+```
+
+
+# HELOC Balance Regression Trees 3 {.bigger .incremental}
+
+- Predict Balance values for the validation set using the default tree
+
+```{r, message=FALSE, warning=FALSE}
+# Predict Balance values for the validation set using the default tree
+# Saved the predicted_value into the validationSet
+validationSet$predicted_value <- predict(default_reg_tree, validationSet)
+head(validationSet)
+
+# Evaluate prediction accuracy on the validation set using accuracy() function in the "forecast" package
+library(forecast)
+accuracy(object = validationSet$predicted_value, validationSet$Balance)
+```

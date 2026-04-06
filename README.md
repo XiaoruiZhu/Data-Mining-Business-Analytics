@@ -1,6 +1,8 @@
 # Data Mining for Business Analytics
 
-This course covers data mining methods for business analytics. It is an entry-level course for undergraduate students in the business school to learn advanced techniques in data mining with hands-on experience. It also introduces generative AI tools to help students effectively apply data analytics with the support of generative AI. *If any page or link cannot be loaded, please refer to Blackboard for the materials.*
+This course covers data mining methods for business analytics. It is an entry-level course for undergraduate students in the business school to learn advanced techniques in data mining with hands-on experience. It also introduces generative AI tools to help students effectively apply data analytics with the support of generative AI. 
+
+*If any page or link cannot be loaded, please refer to Blackboard for the materials.*
 
 ## Lecture and Lab Notes
 
@@ -56,34 +58,41 @@ table th:nth-of-type(2) {
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
 | [6-1. Classical Regression & Classification Methods](lecture/6-1-introduction-to-regression-classification.html)    |                                     |
-| [6-2. Classification and Regression Tree (CART)](lecture/6-2-performance-evaluation.html)    |                                     |
-
-### Clustering Analysis
-
-| Notes                                                       | Labs                                |
-|:------------------------------------------------------------|------------------------------------:|
-| [7-1. Clustering Analysis](lecture/7-1-clustering-analysis.html)    |                                     |
-
+| [6-2. Classification and Regression Tree (CART)](lecture/6-2-classification-and-regression-tree.html)    |                                     |
+| [6-3. Ensemble Methods: Random Forests](lecture/6-3-random-forests.html)    |                                     |
 
 ### Neural Networks
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [8-1. Neural Network Models](lecture/8-1-neural-network-models.html)    |                                     |
+| [7-1. Neural Network Models](lecture/7-1-neural-network-models.html)    |                                     |
 
 
 ### Time-series forecasting
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [9-1. Time-series forecasting](lecture/9-1-time-series-models.html)    |                                     |
+| [8-1. Time-series forecasting](lecture/8-1-time-series-models.html)    |                                     |
 
+
+### Association rules
+
+| Notes                                                       | Labs                                |
+|:------------------------------------------------------------|------------------------------------:|
+| [9-1. Association rules](lecture/9-1-basic-text-mining.html)    |                                     |
 
 ### Basic Text Mining
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
 | [10-1. Basic Text Mining](lecture/10-1-basic-text-mining.html)    |                                     |
+
+### Clustering Analysis
+
+| Notes                                                       | Labs                                |
+|:------------------------------------------------------------|------------------------------------:|
+| [11-1. Clustering Analysis](lecture/11-1-clustering-analysis.html)    |                                     |
+
 
 <a id="bottom"></a>
 
