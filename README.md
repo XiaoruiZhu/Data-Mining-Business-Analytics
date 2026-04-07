@@ -79,7 +79,7 @@ table th:nth-of-type(2) {
 
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
-| [9-1. Association rules](lecture/9-1-basic-text-mining.html)    |                                     |
+| [9-1. Association rules](lecture/9-1-association-rules.html)    |                                     |
 
 ### Basic Text Mining
 
