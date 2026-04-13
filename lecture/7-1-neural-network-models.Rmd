@@ -14,7 +14,7 @@ editor_options:
 
 # Human Brain {.bigger .incremental}
 
-![](neurons.jpg){width=80%}   
+![](figure/neurons.jpg){width=80%}   
 
 # Human Brain {.bigger .incremental}
 
@@ -30,7 +30,7 @@ editor_options:
 
 # Artificial Neural Network {.bigger .incremental}
 
-![](fig1.PNG){width=60%}  
+![](figure/fig1.PNG){width=60%}  
 
 - An artificial neural network is inspired by how neurons interact in the brain
 - Each edge in the network represents a **weight**
@@ -46,7 +46,7 @@ editor_options:
 # A Simple Neural Network: Perceptron {.bigger .incremental}
 
 
-![](perceptron_node.png){width=80%}  
+![](figure/perceptron_node.png){width=80%}  
 
 - It is equivalent to **linear regression** when:
   - the response is continuous, and
@@ -58,7 +58,7 @@ editor_options:
 # Example: MNIST Data {.bigger .incremental}
 
 
-![](mnist.png){width=60%}  
+![](figure/mnist.png){width=60%}  
 
 - MNIST is a well-known image classification data set
 - Each grayscale image has `28 x 28 = 784` pixels
