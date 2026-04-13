@@ -43,8 +43,7 @@ table th:nth-of-type(2) {
 | Notes                                                       | Labs                                |
 |:------------------------------------------------------------|------------------------------------:|
 | [4-1. Intro to Generative AI for Business](lecture/4-1-introduction-to-generative-ai-for-business.html)    |                                     |
-| [4-2. AI Adoption in Data Analytics](lecture/3-2-ai-adoption-in-data-analytics.html)    |                                     |
-| [4-3. Prompt Engineering](lecture/3-3-prompt-engineering-for-business.html)    |                                     |
+| [4-2. Prompt Engineering for Data Analytics](lecture/4-2-prompt-engineering-for-data-analytics.html)    |                                     |
 
 ### Cross-validation and Performance Evaluation
 
