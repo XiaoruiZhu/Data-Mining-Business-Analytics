@@ -9,7 +9,7 @@ output:
   beamer_presentation: default
   ioslides_presentation: default
 editor_options:
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 # Human Brain {.bigger .incremental}
@@ -41,10 +41,9 @@ editor_options:
 
 # How the System Works {.bigger .incremental}
 
-- Helpful video: [3Blue1Brown Neural Networks](https://www.youtube.com/watch?v=aircAruvnKk)
+Helpful video: [3Blue1Brown Neural Networks](https://www.youtube.com/watch?v=aircAruvnKk)
 
 # A Simple Neural Network: Perceptron {.bigger .incremental}
-
 
 ![](figure/perceptron_node.png){width=80%}  
 
@@ -57,8 +56,7 @@ editor_options:
 
 # Example: MNIST Data {.bigger .incremental}
 
-
-![](figure/mnist.png){width=60%}  
+![](figure/mnist.png){width=55%}  
 
 - MNIST is a well-known image classification data set
 - Each grayscale image has `28 x 28 = 784` pixels
@@ -70,12 +68,27 @@ editor_options:
 
 # A Neural Network for MNIST {.bigger .incremental}
 
+![](https://miro.medium.com/v2/resize:fit:640/format:webp/0*FLD5PNYJgWknPvJQ.gif#center){width=80%}
+
+# A Neural Network for MNIST {.bigger .incremental}
+
 - Input layer: `p = 784` units
 - Hidden layer 1: `K_1 = 256` units
 - Hidden layer 2: `K_2 = 128` units
 - Output layer: `10` units for the 10 digit labels
 
-- This network has a very large number of parameters
+![](figure/Fig10-4.png){width=50%}
+
+# A Neural Network for MNIST {.bigger .incremental}
+
+- Input layer: `p = 784` units
+- Hidden layer 1: `K_1 = 256` units
+- Hidden layer 2: `K_2 = 128` units
+- Output layer: `10` units for the 10 digit labels
+
+![](figure/Fig10-4.png){width=50%}
+
+- This network has a very large number of parameters, How many?
 - Neural networks become powerful because they can capture highly complex nonlinear relationships
 - But they can also overfit if not trained carefully
 
